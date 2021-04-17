@@ -18,8 +18,8 @@ void DisplayCPUStat () {
   display.println("CPU");
 
   /*CPU Clearing Boxes, eg: display.fillRect(<X>, ^Y^, W, H, Color);*/
-  display.fillRect(38, 11, 90, 16, BLACK); // fill CPU live stats section only
-  
+  display.fillRect(38, 11, 92, 25, BLACK); // fill CPU live stats section only
+  //display.fillRect(0, 0, 128 , 64, BLACK);
   /* Position Test*/
   //display.drawRect(38, 11, 90, 16, WHITE); // fill CPU live stats section only
   //display.drawRect(38, 37, 90, 16, WHITE); // fill GPU live stats section only
@@ -54,14 +54,14 @@ void DisplayCPUStat () {
   //------------------------------------------ CPU Load/Temp -------------------------------------------------
 
   /*CPU Display String*/
-  int cpuStringStart = inputString.indexOf("|CT");
-  int cpuDegree = inputString.indexOf("ct");
-  int cpuStringLimit = inputString.indexOf("|G");
-  String cpuString1 = inputString.substring(cpuStringStart + 3, cpuDegree);
-  String cpuString2 = inputString.substring(cpuDegree + 2, cpuStringLimit);
+  int cpuStringStart = inputString.indexOf("CT:");
+  int cpuLoad = inputString.indexOf("CL:");
+  int cpuStringLimit = inputString.indexOf("GT:");
+  String cpuString1 = inputString.substring(cpuStringStart + 3, cpuLoad);
+  String cpuString2 = inputString.substring(cpuLoad + 3, cpuStringLimit);
 
   /*CPU TEMPERATURE*/
-  display.setTextSize(2);
+  display.setTextSize(3);
   display.setCursor(42, 12);
   display.print(cpuString1);
   display.setTextSize(1);
@@ -74,6 +74,7 @@ void DisplayCPUStat () {
 #endif
 
   /*CPU LOAD, ALL CORES*/
+  //display.setCursor(95, 12);
   display.setTextSize(2);
   display.print(cpuString2);
   display.setTextSize(1);

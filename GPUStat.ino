@@ -18,7 +18,8 @@ void DisplayGPUStat () {
   display.println("GPU");
 
   /*GPU  Clearing Boxes, eg: display.fillRect(<X>, ^Y^, W, H, Color);*/
-  display.fillRect(38, 11, 90, 16, BLACK); // fill CPU live stats section only
+  display.fillRect(38, 11, 92, 25, BLACK); // fill CPU live stats section only
+  //display.fillRect(0, 0, 128 , 64, BLACK);
   /* Position Test*/
   //display.drawRect(38, 11, 90, 16, WHITE); // fill CPU live stats section only
   //display.drawRect(38, 37, 90, 16, WHITE); // fill GPU live stats section only
@@ -53,7 +54,7 @@ void DisplayGPUStat () {
     }
 
 
-    int gpuNameEnd = inputString.indexOf("|", gpuNameStart);
+    int gpuNameEnd = inputString.indexOf("CT:", gpuNameStart);
     String gpuName = inputString.substring(gpuNameStart, gpuNameEnd - 3);
     display.println(gpuName);
   }
@@ -61,16 +62,15 @@ void DisplayGPUStat () {
 
   //------------------------------------------ GPU Load/Temp -------------------------------------------------
 
-  /*GPU Display String*/
-  int cpuStringLimit = inputString.indexOf("|");
-  int gpuStringStart = inputString.indexOf("G", cpuStringLimit);
-  int gpuDegree = inputString.indexOf("c", gpuStringStart);
-  int gpuStringLimit = inputString.indexOf("|", gpuStringStart);
-  String gpuString1 = inputString.substring(gpuStringStart + 1, gpuDegree);
-  String gpuString2 = inputString.substring(gpuDegree + 1, gpuStringLimit - 1);
+/*GPU Display String*/
+  int gpuStringStart = inputString.indexOf("GT:");
+  int gpuLoad = inputString.indexOf("GL:");
+  int gpuStringLimit = inputString.indexOf("RAM:");
+  String gpuString1 = inputString.substring(gpuStringStart + 3, gpuLoad);
+  String gpuString2 = inputString.substring(gpuLoad + 3, gpuStringLimit);
 
   /*GPU TEMPERATURE*/
-  display.setTextSize(2);
+  display.setTextSize(3);
   display.setCursor(42, 12);
   display.print(gpuString1);
   display.setTextSize(1);
@@ -83,6 +83,7 @@ void DisplayGPUStat () {
 #endif
 
   /*GPU LOAD*/
+  //display.setCursor(95, 12);
   display.setTextSize(2);
   display.print(gpuString2);
   display.setTextSize(1);

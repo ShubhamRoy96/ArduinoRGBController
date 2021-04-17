@@ -109,6 +109,7 @@ void setup() {
 
   /* Serial setup, start serial port at 9600 bps and wait for port to open:*/
   Serial.begin(9600); // 32u4 USB Serial Baud Rate
+  //Serial.begin(115200);
   inputString.reserve(200);
 
   /*Setup RGB Pins */
@@ -145,10 +146,10 @@ void loop() {
   {
     if (displayChangeMode == 1) {
       displayChangeMode = 2;
-      display.fillRect(0, 0, 128 , 32, BLACK);
+      display.fillRect(0, 0, 128 , 64, BLACK);
     } else if (displayChangeMode == 2) {
       displayChangeMode = 1;
-      display.fillRect(0, 0, 128 , 32, BLACK);
+      display.fillRect(0, 0, 128 , 64, BLACK);
     }
 
     lastDisplayChange = millis();
@@ -349,8 +350,8 @@ void splashScreen() {
   display.println(F("Booting..."));
   display.display();      // Show initial text
   delay(200);
-  display.fillRect(0, 0, 128 , 32, BLACK);
-  display.drawBitmap(0, 0, CyberEye, 128, 32, WHITE);
+  display.fillRect(0, 0, 128 , 64, BLACK);
+  display.drawBitmap(0, 0, CyberEye, 128, 64, WHITE);
   display.display();
   // Scroll in various directions, pausing in-between:
   display.startscrollright(0x00, 0x0F);
@@ -360,7 +361,7 @@ void splashScreen() {
   display.startscrollleft(0x00, 0x0F);
   delay(3000);
   display.stopscroll();
-  display.fillRect(0, 0, 128 , 32, BLACK);
+  display.fillRect(0, 0, 128 , 64, BLACK);
   display.clearDisplay();
   display.display();
 }
@@ -369,7 +370,7 @@ void splashScreen() {
 
 
 void splashScreen2() {
-  display.drawBitmap(0, 0, CyberEye, 128, 32, WHITE);
+  display.drawBitmap(0, 0, CyberEye, 128, 64, WHITE);
   display.display();
   delay(1000);
   display.clearDisplay();
