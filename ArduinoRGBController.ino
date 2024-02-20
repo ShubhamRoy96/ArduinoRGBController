@@ -214,6 +214,22 @@ void loop() {
       activityChecker();
 #endif
     }
+    else if (commandString.equals("DSC"))
+    {
+      //STA command starts/turns ON the LED strips      
+      display.clearDisplay();
+      display.setTextColor(SSD1306_WHITE);
+      display.setTextSize(2); //set background txt font size
+      display.setCursor(1, 12);
+      display.println(F("OFFLINE"));
+      display.display();
+      delay(2000);
+
+#ifdef enableActivityChecker
+      activityChecker();
+#endif
+
+    }
     else
     {
 #ifdef enableActivityChecker

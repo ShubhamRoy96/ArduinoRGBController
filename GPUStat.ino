@@ -12,13 +12,14 @@ void DisplayGPUStat () {
 
   //--------------------------------------- Display Background ----------------------------------------------------
 
+  display.fillRect(0, 0, 128 , 64, BLACK);
   /* OLED Background */
   display.setTextSize(2); //set background txt font size
   display.setCursor(1, 12);
   display.println("GPU");
 
   /*GPU  Clearing Boxes, eg: display.fillRect(<X>, ^Y^, W, H, Color);*/
-  display.fillRect(38, 11, 92, 25, BLACK); // fill CPU live stats section only
+  //display.fillRect(38, 11, 92, 25, BLACK); // fill CPU live stats section only
   //display.fillRect(0, 0, 128 , 64, BLACK);
   /* Position Test*/
   //display.drawRect(38, 11, 90, 16, WHITE); // fill CPU live stats section only
@@ -55,7 +56,7 @@ void DisplayGPUStat () {
 
 
     int gpuNameEnd = inputString.indexOf("CT:", gpuNameStart);
-    String gpuName = inputString.substring(gpuNameStart, gpuNameEnd - 3);
+    String gpuName = inputString.substring(gpuNameStart, gpuNameEnd);
     display.println(gpuName);
   }
 
@@ -83,7 +84,7 @@ void DisplayGPUStat () {
 #endif
 
   /*GPU LOAD*/
-  //display.setCursor(95, 12);
+  display.setCursor(0, 35);
   display.setTextSize(2);
   display.print(gpuString2);
   display.setTextSize(1);
